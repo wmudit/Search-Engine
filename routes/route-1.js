@@ -4,7 +4,7 @@ let readline = require("readline");
 let fs = require("fs");
 let trie = require("../utils/constants").trie;
 
-router.get('/', function (req, res) {
+router.get('/', async function (req, res) {
     console.time("buildTrie");
     await buildTrie();
     res.send("Trie built in " + console.timeEnd("buildTrie"));
@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 async function buildTrie () {
     return new Promise(async (resolve, reject) => {
         let rl = readline.createInterface( {
-            input: fs.createReadStream("./utils/words_1.txt")
+            input: fs.createReadStream("./lib/words_1.txt")
         });
         rl.on("line", function (line) {
             trie.insert(line.trim());
