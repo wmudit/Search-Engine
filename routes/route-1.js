@@ -5,9 +5,9 @@ let fs = require("fs");
 let trie = require("../utils/constants").trie;
 
 router.get('/', async function (req, res) {
-    console.time("buildTrie");
+    let startTime = process.hrtime();
     await buildTrie();
-    res.send("Trie built in " + console.timeEnd("buildTrie"));
+    res.send("Trie built in " + process.hrtime(startTime).join(" "));
 })
 
 async function buildTrie () {
