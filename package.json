@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wmudit/Search-Engine#readme",
   "dependencies": {
+    "collections": "^5.1.9",
     "express": "^4.17.1"
   }
 }
