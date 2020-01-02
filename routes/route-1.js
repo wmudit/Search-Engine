@@ -8,6 +8,11 @@ router.get('/', async function (req, res) {
     let startTime = process.hrtime();
     await buildTrie();
     res.send("Trie built in " + process.hrtime(startTime).join(" "));
+    setSuggesions();
+})
+
+router.get('/query/:word', async function (req, res) {
+    res.send(trie.getSuggestions(req.params.word));
 })
 
 async function buildTrie () {
@@ -21,6 +26,12 @@ async function buildTrie () {
             resolve(true);
         });
     });
+}
+
+function setSuggesions () {
+    let startTime = process.hrtime();
+    trie.setSuggestionsForTrie();
+    console.log(`Trie suggestions fixed in ${process.hrtime(startTime).join(" ")}`);
 }
 
 module.exports = router;
